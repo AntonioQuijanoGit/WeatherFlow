@@ -164,12 +164,12 @@
 
   /* Standard Heights */
   --height-sparkline: 100px;
-  --height-chart: 360px;
-  --height-chart-mobile: 280px;
-  --height-indicator-card: 400px;
+  --height-chart: 300px;
+  --height-chart-mobile: 240px;
+  --height-indicator-card: 360px;
   --height-indicator-card-mobile: auto;
-  --height-kpi-card: 280px;
-  --height-kpi-card-mobile: 240px;
+  --height-kpi-card: 240px;
+  --height-kpi-card-mobile: 200px;
 
   /* Standard Transitions */
   --transition-hover: all var(--transition-base);
@@ -258,7 +258,12 @@ html {
 body {
   margin: 0;
   background: var(--bg);
-  background-image: none;
+  background-image: 
+    radial-gradient(circle at 20% 50%, var(--accent-subtle) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, var(--accent-subtle) 0%, transparent 50%),
+    var(--bg);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--fs-base);
@@ -275,7 +280,12 @@ body {
 }
 
 body.theme-dark {
-  background-image: none;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    var(--bg);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
 }
 
 /* Scrollbar - Modern Styling */

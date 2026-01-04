@@ -8,6 +8,36 @@
 >
 </app-header>
 
+<!-- Hero Section for Portfolio -->
+<section class="hero-section" aria-label="Dashboard hero">
+  <div class="hero-background"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <lucide-icon [name]="Activity" [size]="14" aria-hidden="true"></lucide-icon>
+      <span>Real-time Analytics</span>
+    </div>
+    <h1 class="hero-title">Weather Dashboard</h1>
+    <p class="hero-description">
+      Monitor temperature and energy production with real-time data visualization, 
+      interactive charts, and advanced analytics powered by Angular & Chart.js
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-value">{{ dataHistory?.length || 0 }}</span>
+        <span class="hero-stat-label">Data Points</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">5s</span>
+        <span class="hero-stat-label">Update Rate</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">{{ activeRangeLabel }}</span>
+        <span class="hero-stat-label">Time Window</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <main class="container">
   <!-- Current Status -->
   <section class="current-status-section" aria-labelledby="currentStatusTitle">
