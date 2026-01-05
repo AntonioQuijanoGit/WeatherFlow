@@ -380,7 +380,6 @@ energy:
 
 **Antonio Quijano Bernedo**
 
-Weather Dashboard developed as a technical assessment project.
 
 **Technologies**: Angular · TypeScript · Chart.js · RxJS · Docker · CSS3
 
