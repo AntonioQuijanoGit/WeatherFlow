@@ -428,7 +428,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.isDark
       ? {
           grid: 'rgba(148,163,184,0.12)',
-          tick: '#CBD5E1',
+          tick: '#F1F5F9', // Más claro para mejor contraste en dark mode
           tooltipBg: '#0b1220',
           tooltipTitle: '#FFFFFF',
           tooltipBody: '#E2E8F0',
@@ -436,7 +436,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       : {
           grid: 'rgba(2,6,23,0.05)',
-          tick: '#6b7280',
+          tick: '#1F2937', // Más oscuro para mejor contraste en light mode
           tooltipBg: '#0f172a',
           tooltipTitle: '#ffffff',
           tooltipBody: '#e5e7eb',
@@ -604,14 +604,16 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
           cornerRadius: 10,
           padding: 12,
           titleFont: {
+            size: 15,
+            weight: '700' as any,
+            family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+            lineHeight: 1.5,
+          },
+          bodyFont: {
             size: 14,
             weight: '600' as any,
             family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-          },
-          bodyFont: {
-            size: 13,
-            weight: '500' as any,
-            family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+            lineHeight: 1.4,
           },
           titleSpacing: 6,
           bodySpacing: 4,
@@ -632,11 +634,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
             minRotation: 45,
             autoSkip: true,
             maxTicksLimit: 10,
-            padding: 12,
+            padding: 16, // Más padding para mejor separación
             font: {
-              size: 13, // Aumentado de 11 a 13 para mejor legibilidad
-              weight: '600' as any, // Más bold para mejor visibilidad
-              family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', // Fuente específica
+              size: 14, // Aumentado a 14px para máxima legibilidad
+              weight: '700' as any, // Bold más fuerte para mejor contraste
+              family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+              lineHeight: 1.4, // Mejor espaciado entre líneas
             },
             callback: function(value: any, index: number, ticks: any[]) {
               // Show labels more intelligently
@@ -656,11 +659,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
             color: t.tick, 
             autoSkip: true, 
             maxTicksLimit: window.innerWidth < 640 ? 5 : 6, // Fewer ticks on mobile
-            padding: window.innerWidth < 640 ? 6 : 12, // Less padding on mobile
+            padding: window.innerWidth < 640 ? 8 : 16, // Más padding para mejor separación
             font: {
-              size: window.innerWidth < 640 ? 11 : 13, // Aumentado para mejor legibilidad
-              weight: '600' as any, // Más bold para mejor visibilidad
-              family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', // Fuente específica
+              size: window.innerWidth < 640 ? 12 : 14, // Aumentado a 14px para máxima legibilidad
+              weight: '700' as any, // Bold más fuerte para mejor contraste
+              family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+              lineHeight: 1.4, // Mejor espaciado entre líneas
             },
             callback: function(value: any) {
               // Format numbers to prevent stretching on mobile
