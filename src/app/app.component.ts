@@ -512,31 +512,61 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const t = this.themeTokens();
 
-    // Obtener DPR del dispositivo
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Obtener DPR del dispositivo - usar el valor real para mejor calidad
+    const dpr = window.devicePixelRatio || 1;
 
-    // Función para configurar canvas con DPR correcto
+    // Función para configurar canvas con DPR correcto y alta calidad
     const configureCanvas = (canvas: HTMLCanvasElement) => {
       const rect = canvas.getBoundingClientRect();
       const width = rect.width || canvas.offsetWidth || 400;
       const height = rect.height || 260; // Usar altura real del canvas (260px según CSS)
 
       if (width > 0 && height > 0) {
+        // Configurar dimensiones físicas del canvas (alta resolución)
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
+        // Configurar dimensiones CSS (tamaño visual)
         canvas.style.width = width + 'px';
         canvas.style.height = height + 'px';
+        
+        // Configurar contexto para renderizado de alta calidad
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.scale(dpr, dpr);
+          // Mejorar calidad de renderizado
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
+        }
       }
     };
 
     // Configurar ambos canvas ANTES de crear las gráficas
     configureCanvas(tempCanvas);
     configureCanvas(energyCanvas);
+    
+    // Reconfigurar después de un breve delay para asegurar alta calidad
+    setTimeout(() => {
+      configureCanvas(tempCanvas);
+      configureCanvas(energyCanvas);
+    }, 100);
 
     const commonOptions: ChartConfiguration['options'] = {
       responsive: true,
       maintainAspectRatio: false,
-      devicePixelRatio: dpr,
+      devicePixelRatio: dpr, // Usar DPR real para mejor calidad
+      elements: {
+        line: {
+          borderWidth: 2.5, // Líneas más gruesas para mejor visibilidad
+          tension: 0.4,
+          borderCapStyle: 'round' as any,
+          borderJoinStyle: 'round' as any,
+        },
+        point: {
+          radius: 0,
+          hoverRadius: 4,
+          borderWidth: 2,
+        },
+      },
       animation: { 
         duration: 600,
         easing: 'easeOutCubic' as any,
@@ -693,6 +723,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
             pointBackgroundColor: 'transparent',
             pointBorderColor: 'transparent',
             cubicInterpolationMode: 'monotone' as any, // Interpolación más suave
+            borderCapStyle: 'round' as any,
+            borderJoinStyle: 'round' as any,
           },
         ],
       },
@@ -752,6 +784,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
             pointBackgroundColor: 'transparent',
             pointBorderColor: 'transparent',
             cubicInterpolationMode: 'monotone' as any, // Interpolación más suave
+            borderCapStyle: 'round' as any,
+            borderJoinStyle: 'round' as any,
           },
         ],
       },
@@ -1483,7 +1517,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     const rect = canvas.getBoundingClientRect();
     const cssW = rect.width || canvas.clientWidth || 200;
     const cssH = rect.height || canvas.clientHeight || 100;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = window.devicePixelRatio || 1; // Usar DPR real para mejor calidad
 
     if (cssW <= 0 || cssH <= 0) {
       setTimeout(() => this.drawSparkline(canvas, values, color), 100);
