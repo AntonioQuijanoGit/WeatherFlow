@@ -554,6 +554,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       responsive: true,
       maintainAspectRatio: false,
       devicePixelRatio: dpr, // Usar DPR real para mejor calidad
+      font: {
+        family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      },
       elements: {
         line: {
           borderWidth: 2.5, // Líneas más gruesas para mejor visibilidad
@@ -601,12 +604,14 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
           cornerRadius: 10,
           padding: 12,
           titleFont: {
-            size: 13,
+            size: 14,
             weight: '600' as any,
+            family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
           },
           bodyFont: {
-            size: 12,
-            weight: '400' as any,
+            size: 13,
+            weight: '500' as any,
+            family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
           },
           titleSpacing: 6,
           bodySpacing: 4,
@@ -629,8 +634,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
             maxTicksLimit: 10,
             padding: 12,
             font: {
-              size: 11,
-              weight: '500' as any,
+              size: 13, // Aumentado de 11 a 13 para mejor legibilidad
+              weight: '600' as any, // Más bold para mejor visibilidad
+              family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', // Fuente específica
             },
             callback: function(value: any, index: number, ticks: any[]) {
               // Show labels more intelligently
@@ -652,8 +658,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
             maxTicksLimit: window.innerWidth < 640 ? 5 : 6, // Fewer ticks on mobile
             padding: window.innerWidth < 640 ? 6 : 12, // Less padding on mobile
             font: {
-              size: window.innerWidth < 640 ? 10 : 11, // Smaller font on mobile
-              weight: '500' as any,
+              size: window.innerWidth < 640 ? 11 : 13, // Aumentado para mejor legibilidad
+              weight: '600' as any, // Más bold para mejor visibilidad
+              family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', // Fuente específica
             },
             callback: function(value: any) {
               // Format numbers to prevent stretching on mobile
